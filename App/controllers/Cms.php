@@ -47,7 +47,9 @@ class Cms extends CI_Controller {
             'COMMENT' => null
             );
         
-		$this->load->view($this->templateDir.'/index', $data_to_view);
+        $this->load->view($this->templateDir.'/inc/_header', $data_to_view);
+        $this->load->view($this->templateDir.'/index', $data_to_view);
+        $this->load->view($this->templateDir.'/inc/_footer', $data_to_view);
 	}
 
     /*
