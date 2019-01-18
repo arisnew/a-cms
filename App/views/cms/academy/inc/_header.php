@@ -77,34 +77,6 @@
                                             <li><a href="course.html">Loker</a></li>
                                         </ul>
                                     </li>
-                                    <!-- <li><a href="#">Mega Menu</a>
-                                        <div class="megamenu">
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="#">Home</a></li>
-                                                <li><a href="#">Services &amp; Features</a></li>
-                                                <li><a href="#">Accordions and tabs</a></li>
-                                                <li><a href="#">Menu ideas</a></li>
-                                                <li><a href="#">Students Gallery</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="#">Home</a></li>
-                                                <li><a href="#">Services &amp; Features</a></li>
-                                                <li><a href="#">Accordions and tabs</a></li>
-                                                <li><a href="#">Menu ideas</a></li>
-                                                <li><a href="#">Students Gallery</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="#">Home</a></li>
-                                                <li><a href="#">Services &amp; Features</a></li>
-                                                <li><a href="#">Accordions and tabs</a></li>
-                                                <li><a href="#">Menu ideas</a></li>
-                                                <li><a href="#">Students Gallery</a></li>
-                                            </ul>
-                                            <div class="single-mega cn-col-4">
-                                                <img src="<?php echo $TEMPLATE_DIR;?>/img/bg-img/bg-1.jpg" alt="">
-                                            </div>
-                                        </div>
-                                    </li> -->
                                     <li><a href="about-us.html">About Us</a></li>
                                     <li><a href="about-us.html">Gallery</a></li>
                                     <li><a href="course.html">Alumni</a></li>
