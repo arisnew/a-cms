@@ -72,21 +72,16 @@
                                     <li><a href="index.html">Home</a></li>
                                     <li><a href="#">Article</a>
                                         <ul class="dropdown">
-                                            <li><a href="index.html">News</a></li>
-                                            <li><a href="about-us.html">Jurnal</a></li>
-                                            <li><a href="course.html">Loker</a></li>
+                                            <li><a href="<?php echo site_url('articles/news');?>">News</a></li>
+                                            <li><a href="<?php echo site_url('articles/jurnal');?>">Jurnal</a></li>
+                                            <li><a href="<?php echo site_url('articles/loker');?>">Loker</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li><a href="about-us.html">Gallery</a></li>
-                                    <li><a href="course.html">Alumni</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                    <li><a href="#">Academic</a>
-                                        <ul class="dropdown">
-                                            <li><a href="index.html">PMB</a></li>
-                                            <li><a href="about-us.html">SIAKAD</a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a href="<?php echo site_url('page/about');?>">About</a></li>
+                                    <li><a href="<?php echo site_url('alumni');?>">Alumni</a></li>
+                                    <li><a href="<?php echo site_url('page/contact');?>">Contact</a></li>
+                                    <li><a href="http://siakad.sttiss.ac.id">SIAKAD</a></li>
+                                    <li><a href="http://pmb.sttiss.ac.id">Pendaftaran</a></li>
                                 </ul>
                             </div>
                             <!-- Nav End -->
@@ -95,7 +90,7 @@
                         <!-- Calling Info -->
                         <div class="calling-info">
                             <div class="call-center">
-                                <a href="tel:+654563325568889"><i class="icon-telephone-2"></i> <span>(+65) 456 332 5568 889</span></a>
+                                <a href="tel:+(0267)8454772"><i class="icon-telephone-2"></i> <span>( 0267 ) 8454772</span></a>
                             </div>
                         </div>
                     </nav>

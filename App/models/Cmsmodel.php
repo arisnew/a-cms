@@ -20,7 +20,7 @@ class Cmsmodel extends Model {
             'where' => array(
                 'menu_group_id' => $menu_group_id,
                 'is_active' => 1,
-                'site_id' => $site_id
+                'site_id' => $this->site_id
                 ),
             'sort' => 'menu_index ASC'
             ));
@@ -62,7 +62,7 @@ class Cmsmodel extends Model {
             'table' => 'v_cms_article',
             'where' => array(
                 'is_publish' => 1,
-                'site_id' => $site_id
+                'site_id' => $this->site_id
                 ),
             'sort' => 'created_on DESC',
             'limit' => array($limit)
@@ -82,7 +82,7 @@ class Cmsmodel extends Model {
             'where' => array(
                 'is_publish' => 1,
                 'is_featured' => 1,
-                'site_id' => $site_id
+                'site_id' => $this->site_id
                 ),
             'sort' => 'created_on DESC',
             'limit' => array($limit)
@@ -102,7 +102,7 @@ class Cmsmodel extends Model {
             'where' => array(
                 'is_publish' => 1,
                 'is_jumbotron' => 1,
-                'site_id' => $site_id
+                'site_id' => $this->site_id
                 ),
             'sort' => 'created_on DESC',
             'limit' => array($limit)
@@ -120,7 +120,7 @@ class Cmsmodel extends Model {
         $dataPost = $this->getList(array(
             'table' => 'v_cms_archive_post',
             'where' => array(
-                'site_id' => $site_id
+                'site_id' => $this->site_id
                 )
             ));
 
@@ -136,7 +136,7 @@ class Cmsmodel extends Model {
             
         if ($category) {
             $query = "
-                SELECT * FROM v_cms_article WHERE is_publish = 1 AND site_id = ".$site_id." 
+                SELECT * FROM v_cms_article WHERE is_publish = 1 AND site_id = ".$this->site_id." 
                     AND article_id IN (SELECT article_id FROM cms_articlecategory WHERE article_category_id = $category)
                      ORDER BY $sort
                      LIMIT $limit
@@ -148,7 +148,7 @@ class Cmsmodel extends Model {
                 'table' => 'v_cms_article',
                 'where' => array(
                     'is_publish' => 1,
-                    'site_id' => $site_id
+                    'site_id' => $this->site_id
                     ),
                 'sort' => 'counter DESC',
                 'limit' => array($limit)
@@ -184,6 +184,16 @@ class Cmsmodel extends Model {
         $result = null;
         if($link) {
             $result = $this->getList(array('table' => 'v_cms_articletags', 'where' => array('article_id' => $article_id)));
+        }
+
+        return $result;
+    }
+
+    public function getPageByLink($link = null)
+    {
+        $result = null;
+        if($link) {
+            $result = $this->getRecord(array('table' => 'v_cms_page', 'where' => array('link' => $link, 'is_publish' => 1)));
         }
 
         return $result;
