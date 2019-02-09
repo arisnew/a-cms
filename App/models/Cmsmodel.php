@@ -198,4 +198,19 @@ class Cmsmodel extends Model {
 
         return $result;
     }
+
+    public function getTotalArticle($category = null)
+    {
+        if($category) $this->db->where('article_category_id', $category);
+        $this->db->where('is_publish', 1);
+        return $this->db->get('v_cms_article')->num_rows();
+    }
+
+    public function getArticles($category = null, $page, $per_page = 5)
+    {
+        if($category) $this->db->where('article_category_id', $category);
+        $this->db->where('is_publish', 1);
+        $this->db->limit($per_page, $page); //limit
+        return $this->db->get('v_cms_article')->result();
+    }
 }

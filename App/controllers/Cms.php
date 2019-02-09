@@ -80,7 +80,27 @@ class Cms extends CI_Controller {
         $this->load->view($this->cms_var->template_path.'/inc/_header', $data_to_view);
         $this->load->view($this->cms_var->template_path.'/index', $data_to_view);
         $this->load->view($this->cms_var->template_path.'/inc/_footer', $data_to_view);
-	}
+    }
+    
+    /*
+    * for all article
+    * @param $page
+    */
+    public function article_all($page = NULL){
+        $this->load->library('pagination');
+        $page = (int) $page;
+        $category = null;   //all category
+        $config['base_url']     = site_url('articles');     //set the base url for pagination
+		$config['total_rows']   = $this->cmsmodel->getTotalArticle($category);  //total rows
+		$config['per_page']     = 5; //the number of per page for pagination
+		$config['uri_segment']  = 2; //see from base_url. 2 for this case, using routing
+		$this->pagination->initialize($config); //initialize pagination
+        $articles = $this->cmsmodel->getArticles($category, $page, $config['per_page']);
+
+        $viewFile = $this->cms_var->template_path.'/_article_all'; 
+
+        $this->view($viewFile, array('articles' => $articles, 'total_data' => $config['total_rows']));
+    }
 
     /*
     * for single article
@@ -96,7 +116,7 @@ class Cms extends CI_Controller {
         } else {
            $categories = $this->cmsmodel->getCategoriesByArticle($article->article_id);
            $tags = $this->cmsmodel->getTagsByArticle($article->article_id);
-           $viewFile = 'cms/'.$this->cms_var->template_path.'/single_template'; 
+           $viewFile = $this->cms_var->template_path.'/single_template'; 
         }
 
         $this->load->view($viewFile,array('article' => $article, 'categories'=>$categories, 'tags'=>$tags));
