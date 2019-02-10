@@ -213,4 +213,10 @@ class Cmsmodel extends Model {
         $this->db->limit($per_page, $page); //limit
         return $this->db->get('v_cms_article')->result();
     }
+
+    public function getCategoryByLink($link = null)
+    {
+        $this->db->where('link', $link);
+        return $this->db->get('cms_article_category')->row();
+    }
 }

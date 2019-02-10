@@ -103,6 +103,34 @@ class Cms extends CI_Controller {
     }
 
     /*
+    * for article category
+    * @param $page
+    */
+    public function article_category($category_link, $page = NULL){
+        $this->load->library('pagination');
+        $page = (int) $page;
+        $category_id = null;
+        
+
+        $category = $this->cmsmodel->getCategoryByLink($category_link);
+        if ($category) {
+            $category_id = $category->article_category_id;
+        }
+
+        
+        $config['base_url']     = site_url('articles/' . $category_link );     //set the base url for pagination
+		$config['total_rows']   = $this->cmsmodel->getTotalArticle($category_id);  //total rows
+		$config['per_page']     = 5; //the number of per page for pagination
+		$config['uri_segment']  = 3; //see from base_url. 2 for this case, using routing
+		$this->pagination->initialize($config); //initialize pagination
+        $articles = $this->cmsmodel->getArticles($category_id, $page, $config['per_page']);
+
+        $viewFile = $this->cms_var->template_path.'/_article_category'; 
+
+        $this->view($viewFile, array('articles' => $articles, 'total_data' => $config['total_rows'], 'category' => $category));
+    }
+
+    /*
     * for single article
     * @param $link
     */
