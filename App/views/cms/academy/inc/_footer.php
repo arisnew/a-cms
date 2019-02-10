@@ -7,15 +7,19 @@
                     <div class="col-12 col-sm-6 col-lg-3">
                         <div class="footer-widget mb-100">
                             <div class="widget-title">
-                                <a href="#"><img src="<?php echo $TEMPLATE_DIR;?>/img/core-img/logo2.png" alt=""></a>
+                                <a href="<?php echo site_url();?>">
+                                    <img src="<?php echo $TEMPLATE_DIR;?>/img/core-img/logo-sttis-white.png" alt="">
+                                    <!-- <?php echo $CMS->company_name;?> -->
+                                </a>
                             </div>
-                            <p>Cras vitae turpis lacinia, lacinia lacus non, fermentum nisi. Donec et sollicitudin est, in euismod erat. Ut at erat et arcu pulvinar cursus a eget.</p>
+                            <p>
+                                <?php echo $CMS->web_tag;?>
+                            </p>
                             <div class="footer-social-info">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-dribbble"></i></a>
-                                <a href="#"><i class="fa fa-behance"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="<?php echo $CMS->account_facebook;?>"><i class="fa fa-facebook"></i></a>
+                                <a href="<?php echo $CMS->account_twitter;?>"><i class="fa fa-twitter"></i></a>
+                                <a href="<?php echo $CMS->account_google;?>"><i class="fa fa-google"></i></a>
+                                <a href="<?php echo $CMS->account_instagram;?>"><i class="fa fa-instagram"></i></a>
                             </div>
                         </div>
                     </div>
@@ -27,10 +31,12 @@
                             </div>
                             <nav>
                                 <ul class="useful-links">
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">Services &amp; Features</a></li>
-                                    <li><a href="#">Accordions and tabs</a></li>
-                                    <li><a href="#">Menu ideas</a></li>
+                                    <li><a href="<?php echo base_url();?>">Home</a></li>
+                                    <li><a href="<?php echo site_url('page/about');?>">About</a></li>
+                                    <li><a href="<?php echo site_url('articles');?>">Articles</a></li>
+                                    <li><a href="<?php echo site_url('alumni');?>">Alumni</a></li>
+                                    <li><a href="http://siakad.sttiss.ac.id">SIAKAD</a></li>
+                                    <li><a href="http://pmb.sttiss.ac.id">Pendaftaran</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -42,12 +48,15 @@
                                 <h6>Gallery</h6>
                             </div>
                             <div class="gallery-list d-flex justify-content-between flex-wrap">
-                                <a href="<?php echo $TEMPLATE_DIR;?>/img/bg-img/gallery1.jpg" class="gallery-img" title="Gallery Image 1"><img src="<?php echo $TEMPLATE_DIR;?>/img/bg-img/gallery1.jpg" alt=""></a>
-                                <a href="<?php echo $TEMPLATE_DIR;?>/img/bg-img/gallery2.jpg" class="gallery-img" title="Gallery Image 2"><img src="<?php echo $TEMPLATE_DIR;?>/img/bg-img/gallery2.jpg" alt=""></a>
-                                <a href="<?php echo $TEMPLATE_DIR;?>/img/bg-img/gallery3.jpg" class="gallery-img" title="Gallery Image 3"><img src="<?php echo $TEMPLATE_DIR;?>/img/bg-img/gallery3.jpg" alt=""></a>
-                                <a href="<?php echo $TEMPLATE_DIR;?>/img/bg-img/gallery4.jpg" class="gallery-img" title="Gallery Image 4"><img src="<?php echo $TEMPLATE_DIR;?>/img/bg-img/gallery4.jpg" alt=""></a>
-                                <a href="<?php echo $TEMPLATE_DIR;?>/img/bg-img/gallery5.jpg" class="gallery-img" title="Gallery Image 5"><img src="<?php echo $TEMPLATE_DIR;?>/img/bg-img/gallery5.jpg" alt=""></a>
-                                <a href="<?php echo $TEMPLATE_DIR;?>/img/bg-img/gallery6.jpg" class="gallery-img" title="Gallery Image 6"><img src="<?php echo $TEMPLATE_DIR;?>/img/bg-img/gallery6.jpg" alt=""></a>
+                                <?php
+                                if ($GALLERIES) {
+                                    foreach ($GALLERIES as $row ) {
+                                        echo '<a href="'.base_url('asset/files/gallery/'.$row->img).'" class="gallery-img" title="Gallery Image">
+                                                <img src="'.base_url('asset/files/gallery/thumb/'.$row->img).'" alt="">
+                                            </a>';
+                                    }
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -59,15 +68,17 @@
                             </div>
                             <div class="single-contact d-flex mb-30">
                                 <i class="icon-placeholder"></i>
-                                <p>4127/ 5B-C Mislane Road, Gibraltar, UK</p>
+                                <p>
+                                    <?php echo $CMS->company_address;?> <?php echo $CMS->company_address_2;?>
+                                </p>
                             </div>
                             <div class="single-contact d-flex mb-30">
                                 <i class="icon-telephone-1"></i>
-                                <p>Main: 203-808-8613 <br>Office: 203-808-8648</p>
+                                <p><?php echo $CMS->company_phone;?></p>
                             </div>
                             <div class="single-contact d-flex">
                                 <i class="icon-contract"></i>
-                                <p>office@yourbusiness.com</p>
+                                <p><?php echo $CMS->company_email;?></p>
                             </div>
                         </div>
                     </div>
@@ -79,7 +90,7 @@
                 <div class="row">
                     <div class="col-12">
                         <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;2019 All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            Copyright &copy;2019 <?php echo $CMS->web_name;?> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
                     </div>

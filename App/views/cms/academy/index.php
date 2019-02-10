@@ -11,7 +11,7 @@
                         <div class="col-12">
                             <div class="hero-slides-content">
                                 <h4 data-animation="fadeInUp" data-delay="100ms">All the courses you need</h4>
-                                <h2 data-animation="fadeInUp" data-delay="400ms">Wellcome to our <br>Online University</h2>
+                                <h2 data-animation="fadeInUp" data-delay="400ms">Wellcome to our <br>University</h2>
                                 <a href="#" class="btn academy-btn" data-animation="fadeInUp" data-delay="700ms">Read More</a>
                             </div>
                         </div>
@@ -26,7 +26,7 @@
                         <div class="col-12">
                             <div class="hero-slides-content">
                                 <h4 data-animation="fadeInUp" data-delay="100ms">All the courses you need</h4>
-                                <h2 data-animation="fadeInUp" data-delay="400ms">Wellcome to our <br>Online University</h2>
+                                <h2 data-animation="fadeInUp" data-delay="400ms">Wellcome to <br>STTISS</h2>
                                 <a href="#" class="btn academy-btn" data-animation="fadeInUp" data-delay="700ms">Read More</a>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                             <i class="icon-id-card"></i>
                         </div>
                         <div class="course-content">
-                            <h4>Business School</h4>
+                            <h4>Teknik Informatika</h4>
                             <p>Cras vitae turpis lacinia, lacinia la cus non, fermentum nisi.</p>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                             <i class="icon-worldwide"></i>
                         </div>
                         <div class="course-content">
-                            <h4>Marketing</h4>
+                            <h4>Manajemen Informatika</h4>
                             <p>Lacinia, lacinia la cus non, fermen tum nisi.</p>
                         </div>
                     </div>
@@ -108,43 +108,7 @@
                             <i class="icon-map"></i>
                         </div>
                         <div class="course-content">
-                            <h4>Photography</h4>
-                            <p>Cras vitae turpis lacinia, lacinia la cus non, fermentum nisi.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Course Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-course-area d-flex align-items-center mb-100 wow fadeInUp" data-wow-delay="600ms">
-                        <div class="course-icon">
-                            <i class="icon-like"></i>
-                        </div>
-                        <div class="course-content">
-                            <h4>Social Media</h4>
-                            <p>Cras vitae turpis lacinia, lacinia la cus non, fermentum nisi.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Course Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-course-area d-flex align-items-center mb-100 wow fadeInUp" data-wow-delay="700ms">
-                        <div class="course-icon">
-                            <i class="icon-responsive"></i>
-                        </div>
-                        <div class="course-content">
-                            <h4>Development</h4>
-                            <p>Lacinia, lacinia la cus non, fermen tum nisi.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Course Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-course-area d-flex align-items-center mb-100 wow fadeInUp" data-wow-delay="800ms">
-                        <div class="course-icon">
-                            <i class="icon-message"></i>
-                        </div>
-                        <div class="course-content">
-                            <h4>Design</h4>
+                            <h4>Sistem Informasi</h4>
                             <p>Cras vitae turpis lacinia, lacinia la cus non, fermentum nisi.</p>
                         </div>
                     </div>
@@ -326,26 +290,6 @@
         </div>
     </div>
     <!-- ##### Top Popular Courses Area End ##### -->
-
-    <!-- ##### Partner Area Start ##### -->
-    <!-- 
-    <div class="partner-area section-padding-0-100">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="partners-logo d-flex align-items-center justify-content-between flex-wrap">
-                        <a href="#"><img src="<?php echo $TEMPLATE_DIR;?>/img/clients-img/partner-1.png" alt=""></a>
-                        <a href="#"><img src="<?php echo $TEMPLATE_DIR;?>/img/clients-img/partner-2.png" alt=""></a>
-                        <a href="#"><img src="<?php echo $TEMPLATE_DIR;?>/img/clients-img/partner-3.png" alt=""></a>
-                        <a href="#"><img src="<?php echo $TEMPLATE_DIR;?>/img/clients-img/partner-4.png" alt=""></a>
-                        <a href="#"><img src="<?php echo $TEMPLATE_DIR;?>/img/clients-img/partner-5.png" alt=""></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-     -->
-    <!-- ##### Partner Area End ##### -->
 
     <!-- ##### CTA Area Start ##### -->
     <div class="call-to-action-area">

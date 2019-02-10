@@ -16,25 +16,32 @@ class Cms extends CI_Controller {
     /* 
     * BASE CMS view template
     */
-    public function view($view_file, $data = array()) {
+    public function view($view_file, $data = array(), $title = null) {
+        $title = ($title == null) ? 'Welcome | ' . $this->cms_var->web_name : $title;
+        $jumbotron = ($this->cms_var->is_jumbotron == 1) ? $this->cmsmodel->getJumbotronPost() : null;
+        $featured = ($this->cms_var->is_featured == 1) ? $this->cmsmodel->getFeaturedPost() : null;
+        $popular = ($this->cms_var->is_popular == 1) ? $this->cmsmodel->getPopularPost() : null;
+        $categories = $this->cmsmodel->getCategories();
+        $galleries = ($this->cms_var->is_gallery == 1) ? $this->cmsmodel->getGalleryDetail($this->cms_var->default_gallery_id) : null;
         $data_to_view = array(
             /* basic variable on view CMS */
             'CMS' => $this->cms_var,
             'TEMPLATE_DIR' => base_url('asset/' . $this->cms_var->template_path),
             'BASE_URL' => base_url(), //$this->cms_var->home_url
             'MENU_TOP' => $this->load->view($this->cms_var->template_path.'/_menu_top',array('menus' => $this->cmsmodel->getMenuByGroup(1)), TRUE),
-            'JUMBOTRON' => $this->cmsmodel->getJumbotronPost(),
+            'JUMBOTRON' => $jumbotron,
+            'GALLERIES' => $galleries,
             //sidebar / related
             'BREADCRUMB' => NULL,
             'WIDGETS' => null,
             'ARCHIVES' => $this->cmsmodel->getArchivePost(),
-            'CATEGORIES' => null,
-            'POPULAR_POSTS' => $this->cmsmodel->getPopularPost(),
+            'CATEGORIES' => $categories,
+            'POPULAR_POSTS' => $popular,
             'RECENT_POSTS' => $this->cmsmodel->getRecentPost(5),
             'RELATED_POST' => null,
-            'FEATURED_POST' => $this->cmsmodel->getFeaturedPost(2),
+            'FEATURED_POST' => $featured,
             //single page
-            'TITLE' => 'Welcome | ' . $this->cms_var->web_name,
+            'TITLE' => $title,
             'CONTENT_TITLE' => null,
             'CONTENT_IMAGE' => null,
             'CONTENT_BODY' => null,
@@ -44,42 +51,20 @@ class Cms extends CI_Controller {
             'COMMENT' => null
             );
         
+        $data_to_view['SIDEBAR'] = $this->load->view($this->cms_var->template_path.'/inc/_sidebar', $data_to_view, TRUE);
+
+        //merge array
+        
         $this->load->view($this->cms_var->template_path.'/inc/_header', $data_to_view);
-        $this->load->view($view_file, $data);
+        $this->load->view($view_file, array_merge($data_to_view, $data));
         $this->load->view($this->cms_var->template_path.'/inc/_footer', $data_to_view);
 	}
 
+    /* 
+    * Homepage
+    */
 	public function index() {
-        $data_to_view = array(
-            /* basic variable on view CMS */
-            'CMS' => $this->cms_var,
-            'TEMPLATE_DIR' => base_url('asset/' . $this->cms_var->template_path),
-            'BASE_URL' => base_url(), //$this->cms_var->home_url
-            'MENU_TOP' => $this->load->view($this->cms_var->template_path.'/_menu_top',array('menus' => $this->cmsmodel->getMenuByGroup(1)), TRUE),
-            'JUMBOTRON' => $this->cmsmodel->getJumbotronPost(),
-            //sidebar / related
-            'BREADCRUMB' => NULL,
-            'WIDGETS' => null,
-            'ARCHIVES' => $this->cmsmodel->getArchivePost(),
-            'CATEGORIES' => null,
-            'POPULAR_POSTS' => $this->cmsmodel->getPopularPost(),
-            'RECENT_POSTS' => $this->cmsmodel->getRecentPost(5),
-            'RELATED_POST' => null,
-            'FEATURED_POST' => $this->cmsmodel->getFeaturedPost(2),
-            //single page
-            'TITLE' => 'Welcome | ' . $this->cms_var->web_name,
-            'CONTENT_TITLE' => null,
-            'CONTENT_IMAGE' => null,
-            'CONTENT_BODY' => null,
-            'CONTENT_CATEGORIES' => null,
-            'CONTENT_TAGS' => null,
-            'SHARE_SOCIAL_MEDIA' => null,
-            'COMMENT' => null
-            );
-        
-        $this->load->view($this->cms_var->template_path.'/inc/_header', $data_to_view);
-        $this->load->view($this->cms_var->template_path.'/index', $data_to_view);
-        $this->load->view($this->cms_var->template_path.'/inc/_footer', $data_to_view);
+        $this->view($this->cms_var->template_path.'/index');
     }
     
     /*
@@ -126,7 +111,7 @@ class Cms extends CI_Controller {
 
         $viewFile = $this->cms_var->template_path.'/_article_category'; 
 
-        $this->view($viewFile, array('articles' => $articles, 'total_data' => $config['total_rows'], 'category' => $category));
+        $this->view($viewFile, array('articles' => $articles, 'total_data' => $config['total_rows'], 'category' => $category), 'Category '.$category->category_name.' | ' . $this->cms_var->web_name);
     }
 
     /*
@@ -140,13 +125,17 @@ class Cms extends CI_Controller {
             $viewFile = $this->cms_var->template_path.'/_404';
             $categories = NULL;
             $tags = NULL;
+            $title = '';
         } else {
            $categories = $this->cmsmodel->getCategoriesByArticle($article->article_id);
            $tags = $this->cmsmodel->getTagsByArticle($article->article_id);
            $viewFile = $this->cms_var->template_path.'/_article_single';
+           $title = $article->article_title;
         }
 
-        $this->view($viewFile,array('article' => $article, 'categories'=>$categories, 'tags'=>$tags));
+        $title = $title . ' | ' . $this->cms_var->web_name;
+
+        $this->view($viewFile,array('article' => $article, 'categories'=>$categories, 'tags'=>$tags), $title);
     }
 
     /*
@@ -157,13 +146,16 @@ class Cms extends CI_Controller {
         $page = $this->cmsmodel->getPageByLink($link);
         if($page == NULL){
             $viewFile = $this->cms_var->template_path.'/_404';
+            $title = '404 | ' .  $this->cms_var->web_name;
         } else {
-           $viewFile = $this->cms_var->template_path.'/_page_single'; 
+           $viewFile = $this->cms_var->template_path.'/_page_single';
+           $title = $page->page_title . ' | ' . $this->cms_var->web_name;
         }
 
-        $this->view($viewFile, array('page' => $page));
+        $this->view($viewFile, array('page' => $page), $title);
     }
     
+    /*
     public function slider(){
         $slider = $this->load->view('cms/'.$this->cms_var->template_path.'/slider',null, TRUE);
         $this->load->view('cms/'.$this->cms_var->template_path.'/index',array('SLIDER' => $slider));
@@ -197,5 +189,5 @@ class Cms extends CI_Controller {
     public function galleryvidio(){
         $this->load->view($this->cms_var->template_path.'/galleryvidio');
     }
-
+    */
 }

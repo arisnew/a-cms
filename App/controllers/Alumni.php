@@ -16,25 +16,32 @@ class Alumni extends CI_Controller {
     /* 
     * BASE CMS view template
     */
-    public function view($view_file, $data = array()) {
+    public function view($view_file, $data = array(), $title = null) {
+        $title = ($title == null) ? 'Welcome | ' . $this->cms_var->web_name : $title;
+        $jumbotron = ($this->cms_var->is_jumbotron == 1) ? $this->cmsmodel->getJumbotronPost() : null;
+        $featured = ($this->cms_var->is_featured == 1) ? $this->cmsmodel->getFeaturedPost() : null;
+        $popular = ($this->cms_var->is_popular == 1) ? $this->cmsmodel->getPopularPost() : null;
+        $categories = $this->cmsmodel->getCategories();
+        $galleries = ($this->cms_var->is_gallery == 1) ? $this->cmsmodel->getGalleryDetail($this->cms_var->default_gallery_id) : null;
         $data_to_view = array(
             /* basic variable on view CMS */
             'CMS' => $this->cms_var,
             'TEMPLATE_DIR' => base_url('asset/' . $this->cms_var->template_path),
             'BASE_URL' => base_url(), //$this->cms_var->home_url
             'MENU_TOP' => $this->load->view($this->cms_var->template_path.'/_menu_top',array('menus' => $this->cmsmodel->getMenuByGroup(1)), TRUE),
-            'JUMBOTRON' => $this->cmsmodel->getJumbotronPost(),
+            'JUMBOTRON' => $jumbotron,
+            'GALLERIES' => $galleries,
             //sidebar / related
             'BREADCRUMB' => NULL,
             'WIDGETS' => null,
             'ARCHIVES' => $this->cmsmodel->getArchivePost(),
-            'CATEGORIES' => null,
-            'POPULAR_POSTS' => $this->cmsmodel->getPopularPost(),
+            'CATEGORIES' => $categories,
+            'POPULAR_POSTS' => $popular,
             'RECENT_POSTS' => $this->cmsmodel->getRecentPost(5),
             'RELATED_POST' => null,
-            'FEATURED_POST' => $this->cmsmodel->getFeaturedPost(2),
+            'FEATURED_POST' => $featured,
             //single page
-            'TITLE' => 'Welcome | ' . $this->cms_var->web_name,
+            'TITLE' => $title,
             'CONTENT_TITLE' => null,
             'CONTENT_IMAGE' => null,
             'CONTENT_BODY' => null,
@@ -44,8 +51,12 @@ class Alumni extends CI_Controller {
             'COMMENT' => null
             );
         
+        $data_to_view['SIDEBAR'] = $this->load->view($this->cms_var->template_path.'/inc/_sidebar', $data_to_view, TRUE);
+
+        //merge array
+        
         $this->load->view($this->cms_var->template_path.'/inc/_header', $data_to_view);
-        $this->load->view($view_file, $data);
+        $this->load->view($view_file, array_merge($data_to_view, $data));
         $this->load->view($this->cms_var->template_path.'/inc/_footer', $data_to_view);
 	}
 
@@ -53,6 +64,6 @@ class Alumni extends CI_Controller {
         $data_alumni = array();
         $view_file = $this->cms_var->template_path.'/alumni';
         
-        $this->view($view_file, $data_alumni);
+        $this->view($view_file, $data_alumni, 'Data Alumni | ' . $this->cms_var->web_name);
 	}
 }

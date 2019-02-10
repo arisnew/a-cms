@@ -69,7 +69,7 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="<?php echo site_url();?>">Home</a></li>
                                     <li><a href="#">Article</a>
                                         <ul class="dropdown">
                                             <li><a href="<?php echo site_url('articles/news');?>">News</a></li>

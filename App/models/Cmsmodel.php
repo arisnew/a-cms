@@ -178,6 +178,17 @@ class Cmsmodel extends Model {
 
         return $result;
     }
+
+    public function getCategoryByLink($link = null)
+    {
+        $this->db->where('link', $link);
+        return $this->db->get('cms_article_category')->row();
+    }
+
+    public function getCategories()
+    {
+        return $this->getList(array('table' => 'cms_article_category', 'where' => array('is_active' => 1)));
+    }
     
     public function getTagsByArticle($article_id)
     {
@@ -236,9 +247,17 @@ class Cmsmodel extends Model {
         return $this->db->get('v_cms_article')->result();
     }
 
-    public function getCategoryByLink($link = null)
+    public function getGalleryDetail($gallery_id, $n = 6)
     {
-        $this->db->where('link', $link);
-        return $this->db->get('cms_article_category')->row();
+        $result = null;
+        $album = $this->model->getRecord(array('table' => 'cms_gallery', 'where' => array('gallery_id' => $gallery_id)));
+        if($album) {
+            $this->db->where('gallery_id', $gallery_id);
+            $this->db->where('is_publish', 1);
+            $this->db->limit($n);
+            $result = $this->db->get('cms_gallery_detail')->result();
+        }
+
+        return $result;
     }
 }
