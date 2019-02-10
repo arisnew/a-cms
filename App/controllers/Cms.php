@@ -117,7 +117,6 @@ class Cms extends CI_Controller {
             $category_id = $category->article_category_id;
         }
 
-        
         $config['base_url']     = site_url('articles/' . $category_link );     //set the base url for pagination
 		$config['total_rows']   = $this->cmsmodel->getTotalArticle($category_id);  //total rows
 		$config['per_page']     = 5; //the number of per page for pagination
@@ -138,16 +137,16 @@ class Cms extends CI_Controller {
         $article = $this->cmsmodel->getArticleByLink($link);
         
         if($article == NULL){
-            $viewFile = 'cms/404';
+            $viewFile = $this->cms_var->template_path.'/_404';
             $categories = NULL;
             $tags = NULL;
         } else {
            $categories = $this->cmsmodel->getCategoriesByArticle($article->article_id);
            $tags = $this->cmsmodel->getTagsByArticle($article->article_id);
-           $viewFile = $this->cms_var->template_path.'/single_template'; 
+           $viewFile = $this->cms_var->template_path.'/_article_single';
         }
 
-        $this->load->view($viewFile,array('article' => $article, 'categories'=>$categories, 'tags'=>$tags));
+        $this->view($viewFile,array('article' => $article, 'categories'=>$categories, 'tags'=>$tags));
     }
 
     /*
@@ -156,7 +155,6 @@ class Cms extends CI_Controller {
     */
     public function page_single($link = NULL){
         $page = $this->cmsmodel->getPageByLink($link);
-        
         if($page == NULL){
             $viewFile = $this->cms_var->template_path.'/_404';
         } else {

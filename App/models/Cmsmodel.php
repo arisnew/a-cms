@@ -172,7 +172,7 @@ class Cmsmodel extends Model {
     public function getCategoriesByArticle($article_id)
     {
         $result = null;
-        if($link) {
+        if($article_id) {
             $result = $this->getList(array('table' => 'v_cms_articlecategory', 'where' => array('article_id' => $article_id)));
         }
 
@@ -182,7 +182,7 @@ class Cmsmodel extends Model {
     public function getTagsByArticle($article_id)
     {
         $result = null;
-        if($link) {
+        if($article_id) {
             $result = $this->getList(array('table' => 'v_cms_articletags', 'where' => array('article_id' => $article_id)));
         }
 
@@ -201,14 +201,36 @@ class Cmsmodel extends Model {
 
     public function getTotalArticle($category = null)
     {
-        if($category) $this->db->where('article_category_id', $category);
+        if($category) {
+            $cats = array();
+            $this->db->where('article_category_id', $category);
+            $ac = $this->db->get('cms_articlecategory')->result();
+            if($ac) {
+                foreach ($ac as $row) {
+                    $cats[] = $row->article_id;
+                }
+            }
+            
+            $this->db->where_in('article_id', $cats);
+        }
         $this->db->where('is_publish', 1);
         return $this->db->get('v_cms_article')->num_rows();
     }
 
     public function getArticles($category = null, $page, $per_page = 5)
     {
-        if($category) $this->db->where('article_category_id', $category);
+        if($category) {
+            $cats = array();
+            $this->db->where('article_category_id', $category);
+            $ac = $this->db->get('cms_articlecategory')->result();
+            if($ac) {
+                foreach ($ac as $row) {
+                    $cats[] = $row->article_id;
+                }
+            }
+            
+            $this->db->where_in('article_id', $cats);
+        }
         $this->db->where('is_publish', 1);
         $this->db->limit($per_page, $page); //limit
         return $this->db->get('v_cms_article')->result();

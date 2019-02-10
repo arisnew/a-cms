@@ -1,7 +1,7 @@
 <!-- ##### Breadcumb Area Start ##### -->
 <div class="breadcumb-area bg-img" style="background-image: url(<?php echo base_url();?>asset/cms/img/bg-img/breadcumb.jpg);">
     <div class="bradcumbContent">
-        <h2>All Articles</h2>
+        <h2>All Articles <?php echo ($category) ? $category->category_name : '';?></h2>
     </div>
 </div>
 <!-- ##### Breadcumb Area End ##### -->
@@ -33,7 +33,7 @@
                                         <!-- Post Excerpt -->
                                         <p><?php echo cutStr($row->article_content, 250);?></p>
                                         <!-- Read More btn -->
-                                        <a href="#" class="btn academy-btn btn-sm mt-15">Read More</a>
+                                        <a href="<?php echo site_url('article/' . $row->article_link);?>" class="btn academy-btn btn-sm mt-15">Read More</a>
                                     </div>
                                 </div>
                                 <?php

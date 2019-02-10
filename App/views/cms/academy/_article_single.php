@@ -1,7 +1,7 @@
 <!-- ##### Breadcumb Area Start ##### -->
 <div class="breadcumb-area bg-img" style="background-image: url(img/bg-img/breadcumb.jpg);">
         <div class="bradcumbContent">
-            <h2>The News</h2>
+            <h2><?php echo $article->article_title;?></h2>
         </div>
     </div>
     <!-- ##### Breadcumb Area End ##### -->
@@ -13,7 +13,6 @@
                 <div class="col-12 col-md-8">
                     <div class="academy-blog-posts">
                         <div class="row">
-
                             <!-- Single Blog Start -->
                             <div class="col-12">
                                 <div class="single-blog-post mb-50 wow fadeInUp" data-wow-delay="300ms">
@@ -22,69 +21,16 @@
                                         <img src="img/blog-img/1.jpg" alt="">
                                     </div>
                                     <!-- Post Title -->
-                                    <a href="#" class="post-title">Top ten courses we love for you to try</a>
+                                    <a href="#" class="post-title"><?php echo $article->article_title;?></a>
                                     <!-- Post Meta -->
                                     <div class="post-meta">
-                                        <p>By <a href="#">Simon Smith</a> | <a href="#">March 18, 2018</a> | <a href="#">3 comments</a></p>
+                                        <p>By <a href="#"><?php echo $article->created_by_name;?></a> | <a href="#"><?php echo $article->created_on;?></a> | <a href="#">0 comments</a></p>
                                     </div>
                                     <!-- Post Excerpt -->
-                                    <p>Cras vitae turpis lacinia, lacinia lacus non, fermentum nisi. Donec et sollicitudin est, in euismod. Vitae turpis lacinia, lacinia lacus non, fermentum nisi. Donec et sollicitudin est.</p>
-                                    <!-- Read More btn -->
-                                    <a href="#" class="btn academy-btn btn-sm mt-15">Read More</a>
+                                    <?php echo $article->article_content;?>
                                 </div>
                             </div>
-
-                            <!-- Single Blog Start -->
-                            <div class="col-12">
-                                <div class="single-blog-post mb-50 wow fadeInUp" data-wow-delay="400ms">
-                                    <!-- Post Thumb -->
-                                    <div class="blog-post-thumb mb-50">
-                                        <img src="img/blog-img/2.jpg" alt="">
-                                    </div>
-                                    <!-- Post Title -->
-                                    <a href="#" class="post-title">Top ten courses we love for you to try</a>
-                                    <!-- Post Meta -->
-                                    <div class="post-meta">
-                                        <p>By <a href="#">Simon Smith</a> | <a href="#">March 18, 2018</a> | <a href="#">3 comments</a></p>
-                                    </div>
-                                    <!-- Post Excerpt -->
-                                    <p>Cras vitae turpis lacinia, lacinia lacus non, fermentum nisi. Donec et sollicitudin est, in euismod. Vitae turpis lacinia, lacinia lacus non, fermentum nisi. Donec et sollicitudin est.</p>
-                                    <!-- Read More btn -->
-                                    <a href="#" class="btn academy-btn btn-sm mt-15">Read More</a>
-                                </div>
-                            </div>
-
-                            <!-- Single Blog Start -->
-                            <div class="col-12">
-                                <div class="single-blog-post mb-50 wow fadeInUp" data-wow-delay="500ms">
-                                    <!-- Post Thumb -->
-                                    <div class="blog-post-thumb mb-50">
-                                        <img src="img/blog-img/3.jpg" alt="">
-                                    </div>
-                                    <!-- Post Title -->
-                                    <a href="#" class="post-title">Top ten courses we love for you to try</a>
-                                    <!-- Post Meta -->
-                                    <div class="post-meta">
-                                        <p>By <a href="#">Simon Smith</a> | <a href="#">March 18, 2018</a> | <a href="#">3 comments</a></p>
-                                    </div>
-                                    <!-- Post Excerpt -->
-                                    <p>Cras vitae turpis lacinia, lacinia lacus non, fermentum nisi. Donec et sollicitudin est, in euismod. Vitae turpis lacinia, lacinia lacus non, fermentum nisi. Donec et sollicitudin est.</p>
-                                    <!-- Read More btn -->
-                                    <a href="#" class="btn academy-btn btn-sm mt-15">Read More</a>
-                                </div>
-                            </div>
-
                         </div>
-                    </div>
-                    <!-- Pagination Area Start -->
-                    <div class="academy-pagination-area wow fadeInUp" data-wow-delay="400ms">
-                        <nav>
-                            <ul class="pagination">
-                                <li class="page-item active"><a class="page-link" href="#">01</a></li>
-                                <li class="page-item"><a class="page-link" href="#">02</a></li>
-                                <li class="page-item"><a class="page-link" href="#">03</a></li>
-                            </ul>
-                        </nav>
                     </div>
                 </div>
 
