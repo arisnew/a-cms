@@ -22,7 +22,7 @@
                                     <div class="single-blog-post mb-50 wow fadeInUp" data-wow-delay="300ms">
                                         <!-- Post Thumb -->
                                         <div class="blog-post-thumb mb-50">
-                                            <img src="<?php echo base_url('asset/files/' . $row->article_img);?>" alt="<?php echo $row->article_title;?>">
+                                            <img src="<?php echo $this->config->item('asset_cms') . $row->article_img;?>" alt="<?php echo $row->article_title;?>">
                                         </div>
                                         <!-- Post Title -->
                                         <a href="#" class="post-title"><?php echo $row->article_title;?></a>

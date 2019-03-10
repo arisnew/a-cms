@@ -27,12 +27,15 @@ $config['default_org_site'] = 11;
 /*Template Config*/
 $config['app_template'] = 'default';
 /* for CMS */
-$config['cms_template']		= 'cms/blog';	// default, blog
+$config['cms_template']		= 'cms/academy';	// default, blog, academic
 
 /* view template config */
 $config['template_view'] = 'template/'.$config['app_template'].'/index';
 $config['menu_view'] = 'template/'.$config['app_template'].'/_menu';
 $config['template_asset'] = 'asset/template/'.$config['app_template'].'/';
+
+/* asset via ERP */
+$config['asset_cms'] = 'https://localhost/a-erp/asset/files/cms/';
 
 /* Email Sender Config */
 $config['sys_email_sender']			= 'sample@yourdomain.com';

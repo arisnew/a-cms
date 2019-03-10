@@ -13,7 +13,7 @@
             <div class="col-12">
                 <div class="section-heading text-center mx-auto wow fadeInUp" data-wow-delay="300ms">
                     <span><!-- The Best --></span>
-                    <?php echo ($page->img) ? '<img class="" src="'.base_url('asset/files/'.$page->img).'">' : '';
+                    <?php echo ($page->img) ? '<img class="" src="'.$this->config->item('asset_cms').$page->img.'">' : '';
                     ?>
                 </div>
             </div>

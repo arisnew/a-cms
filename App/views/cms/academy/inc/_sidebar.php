@@ -31,7 +31,7 @@
                     ?>
                     <div class="single-latest-blog-post d-flex mb-30">
                         <div class="latest-blog-post-thumb">
-                            <img src="<?php echo base_url('asset/files/thumb/' . $row->article_img);?>" alt="<?php echo $row->article_title;?>">
+                            <img src="<?php echo $this->config->item('asset_cms') . 'thumb/' . $row->article_img;?>" alt="<?php echo $row->article_title;?>">
                         </div>
                         <div class="latest-blog-post-content">
                             <a href="<?php echo site_url('article/' . $row->article_link);?>" class="post-title">

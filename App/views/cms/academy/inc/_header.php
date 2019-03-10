@@ -38,7 +38,7 @@
                                 <a href="<?php echo base_url();?>"><img src="<?php echo $TEMPLATE_DIR;?>/img/core-img/logo.png" alt=""></a>
                             </div>
                             <div class="login-content">
-                                <a href="#">Register / Login</a>
+                                <a href="https://erp.sttiss.ac.id/">Login</a>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                         <!-- Calling Info -->
                         <div class="calling-info">
                             <div class="call-center">
-                                <a href="tel:+(0267)8454772"><i class="icon-telephone-2"></i> <span>( 0267 ) 8454772</span></a>
+                                <a href="tel:+(0267)8454772"><i class="icon-telephone-2"></i> <span><?php echo $CMS->company_phone;?></span></a>
                             </div>
                         </div>
                     </nav>

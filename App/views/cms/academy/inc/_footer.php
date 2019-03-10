@@ -51,8 +51,8 @@
                                 <?php
                                 if ($GALLERIES) {
                                     foreach ($GALLERIES as $row ) {
-                                        echo '<a href="'.base_url('asset/files/gallery/'.$row->img).'" class="gallery-img" title="Gallery Image">
-                                                <img src="'.base_url('asset/files/gallery/thumb/'.$row->img).'" alt="">
+                                        echo '<a href="'.$this->config->item('asset_cms').$row->img.'" class="gallery-img" title="Gallery Image">
+                                                <img src="'.$this->config->item('asset_cms') .'thumb/'.$row->img.'" alt="">
                                             </a>';
                                     }
                                 }
