@@ -180,7 +180,12 @@ class Cms extends CI_Controller {
             $viewFile = $this->cms_var->template_path.'/_404';
             $title = '404 | ' .  $this->cms_var->web_name;
         } else {
-           $viewFile = $this->cms_var->template_path.'/_page_single';
+            if ($link == 'contact') {
+                $viewFile = $this->cms_var->template_path.'/contact';
+            } else {
+                $viewFile = $this->cms_var->template_path.'/_page_single';
+            }
+           
            $title = $page->page_title . ' | ' . $this->cms_var->web_name;
         }
 
@@ -203,40 +208,9 @@ class Cms extends CI_Controller {
 
         $this->view($viewFile, array('page' => $page), $title);
     }
-    
-    /*
-    public function slider(){
-        $slider = $this->load->view('cms/'.$this->cms_var->template_path.'/slider',null, TRUE);
-        $this->load->view('cms/'.$this->cms_var->template_path.'/index',array('SLIDER' => $slider));
+
+    public function article_search($page, $key = null)
+    {
+        //
     }
-    
-    public function comment(){
-        $kode = 0;
-        $data = array(
-                'name'      => $this->input->post('name'),
-                'email'     => $this->input->post('email'),
-                'website'   => $this->input->post('website'),
-                'content'   => $this->input->post('content'),
-                'site_id'   => $this->input->post('site'),
-                'is_publish'=> $this->input->post('publish'),
-                'article_id'=> $this->input->post('article_id'),
-                'created_on'=> date('Y-m-d H:i:s'),
-                'parent_comment_id' => ($this->input->post('parent_comment_id') > 0)?$this->input->post('parent_comment_id'):NULL
-                );
-            //$this->modelscms->insert($data);
-            $save = $this->db->insert('cms_comment',$data);
-        if($save==true){
-            $kode=1;
-        }
-        echo json_encode(array('code'=>$kode));
-    }
-    
-    public function gallery(){
-        $this->load->view($this->cms_var->template_path.'/gallery');
-    }
-    
-    public function galleryvidio(){
-        $this->load->view($this->cms_var->template_path.'/galleryvidio');
-    }
-    */
 }

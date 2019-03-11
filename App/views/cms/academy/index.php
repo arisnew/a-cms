@@ -4,7 +4,7 @@
 $template = $this->model->getRecord(array('table' => 'template_academy', 'where' => array('id' => 1)), 9);
 /* Slide */
 if ($CMS->is_slide == 1) {
-    $slides = $this->model->getList(array('table' => 'cms_slide', 'where' => array('position' => 'top', 'is_active' => 1, 'site_id' => 11)), 9);    //11 -> CMS, 9 -> db cms
+    $slides = $this->model->getList(array('table' => 'cms_slide', 'where' => array('position' => 'top', 'is_active' => 1, 'site_id' => $this->config->item('default_org_site'))));    //11 -> CMS, 9 -> db cms
     ?>
     <section class="hero-area">
         <div class="hero-slides owl-carousel">
@@ -129,7 +129,7 @@ if ($template == true && $template->is_course == 1) {
 }
 /* Testimonial */
 if ($template == true && $template->is_testimonial == 1) {
-    $testimonials = $this->model->getList(array('table' => 'cms_testimonial', 'where' => array('site_id' => 11, 'is_publish' => 1)), 9);
+    $testimonials = $this->model->getList(array('table' => 'cms_testimonial', 'where' => array('site_id' => $this->config->item('default_org_site'), 'is_publish' => 1)));
     ?>
     <div class="testimonials-area section-padding-100 bg-img bg-overlay" style="background-image: url(<?php echo $TEMPLATE_DIR;?>/img/bg-img/bg-2.jpg);">
         <div class="container">

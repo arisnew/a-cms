@@ -60,10 +60,18 @@ class Alumni extends CI_Controller {
         $this->load->view($this->cms_var->template_path.'/inc/_footer', $data_to_view);
 	}
 
-	public function index() {
-        $data_alumni = array();
-        $view_file = $this->cms_var->template_path.'/alumni';
-        
-        $this->view($view_file, $data_alumni, 'Data Alumni | ' . $this->cms_var->web_name);
+	public function index($page = NULL) {
+        $this->load->library('pagination');
+        $this->load->model('alumnimodel');
+        $page = (int) $page;
+        $config['base_url']     = site_url('alumni/index');     //set the base url for pagination
+		$config['total_rows']   = $this->alumnimodel->getTotal();  //total rows
+		$config['per_page']     = 8; //the number of per page for pagination
+		$config['uri_segment']  = 3; //see from base_url. 2 for this case, using routing
+		$this->pagination->initialize($config); //initialize pagination
+        $alumnis = $this->alumnimodel->getAlumni($page, $config['per_page']);
+
+        $viewFile = $this->cms_var->template_path.'/alumni'; 
+        $this->view($viewFile, array('alumnis' => $alumnis, 'total_data' => $config['total_rows']), 'Data Alumni | ' . $this->cms_var->web_name);
 	}
 }
