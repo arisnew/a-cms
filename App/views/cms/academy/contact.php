@@ -77,7 +77,7 @@
     </div>
 </section>
 <!-- ##### Contact Area End ##### -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7707H5fT8MO60v3sgWNNDG27pwlEBRYk"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOURAPI"></script>
 <script>
     var map;
     var latlng = new google.maps.LatLng(-6.303521, 107.301300);
