@@ -169,6 +169,16 @@ class Cmsmodel extends Model {
         return $result;
     }
 
+    public function getArticleById($article_id = null)
+    {
+        $result = null;
+        if($article_id) {
+            $result = $this->getRecord(array('table' => 'v_cms_article', 'where' => array('article_id' => $article_id, 'is_publish' => 1)));
+        }
+
+        return $result;
+    }
+
     public function getCategoriesByArticle($article_id)
     {
         $result = null;
@@ -205,6 +215,16 @@ class Cmsmodel extends Model {
         $result = null;
         if($link) {
             $result = $this->getRecord(array('table' => 'v_cms_page', 'where' => array('link' => $link, 'is_publish' => 1)));
+        }
+
+        return $result;
+    }
+
+    public function getPageById($page_id = null)
+    {
+        $result = null;
+        if($page_id) {
+            $result = $this->getRecord(array('table' => 'v_cms_page', 'where' => array('page_id' => $page_id, 'is_publish' => 1)));
         }
 
         return $result;

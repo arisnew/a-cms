@@ -64,7 +64,15 @@ class Cms extends CI_Controller {
     * Homepage
     */
 	public function index() {
-        $this->view($this->cms_var->template_path.'/index');
+        /* Homepage type? */
+        if ($this->cms_var->homepage_type == 'page') {
+            $this->page_single_id($this->cms_var->homepage_page_id);
+        } elseif ($this->cms_var->homepage_type == 'article') {
+            $this->article_single_id($this->cms_var->homepage_article_id);
+        } else {
+            //using custom view template
+            $this->view($this->cms_var->template_path.'/index');
+        }
     }
     
     /*
@@ -139,11 +147,52 @@ class Cms extends CI_Controller {
     }
 
     /*
+    * for single article by article_id
+    * @param $article_id
+    */
+    public function article_single_id($id = NULL ){
+        $article = $this->cmsmodel->getArticleById($id);
+        
+        if($article == NULL){
+            $viewFile = $this->cms_var->template_path.'/_404';
+            $categories = NULL;
+            $tags = NULL;
+            $title = '';
+        } else {
+           $categories = $this->cmsmodel->getCategoriesByArticle($article->article_id);
+           $tags = $this->cmsmodel->getTagsByArticle($article->article_id);
+           $viewFile = $this->cms_var->template_path.'/_article_single';
+           $title = $article->article_title;
+        }
+
+        $title = $title . ' | ' . $this->cms_var->web_name;
+
+        $this->view($viewFile,array('article' => $article, 'categories'=>$categories, 'tags'=>$tags), $title);
+    }
+
+    /*
     * for single page
     * @param $link
     */
     public function page_single($link = NULL){
         $page = $this->cmsmodel->getPageByLink($link);
+        if($page == NULL){
+            $viewFile = $this->cms_var->template_path.'/_404';
+            $title = '404 | ' .  $this->cms_var->web_name;
+        } else {
+           $viewFile = $this->cms_var->template_path.'/_page_single';
+           $title = $page->page_title . ' | ' . $this->cms_var->web_name;
+        }
+
+        $this->view($viewFile, array('page' => $page), $title);
+    }
+
+    /*
+    * for single page by page_id
+    * @param $id
+    */
+    public function page_single_id($id = NULL){
+        $page = $this->cmsmodel->getPageById($id);
         if($page == NULL){
             $viewFile = $this->cms_var->template_path.'/_404';
             $title = '404 | ' .  $this->cms_var->web_name;
