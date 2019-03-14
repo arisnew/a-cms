@@ -65,7 +65,7 @@ class Cmsmodel extends Model {
                 'site_id' => $this->site_id
                 ),
             'sort' => 'created_on DESC',
-            'limit' => array($limit)
+            'limits' => array($limit)
             ));
 
         return $dataPost;
@@ -85,7 +85,7 @@ class Cmsmodel extends Model {
                 'site_id' => $this->site_id
                 ),
             'sort' => 'created_on DESC',
-            'limit' => array($limit)
+            'limits' => array($limit)
             ));
 
         return $dataPost;
@@ -105,7 +105,7 @@ class Cmsmodel extends Model {
                 'site_id' => $this->site_id
                 ),
             'sort' => 'created_on DESC',
-            'limit' => array($limit)
+            'limits' => array($limit)
             ));
 
         return $dataPost;
@@ -151,7 +151,7 @@ class Cmsmodel extends Model {
                     'site_id' => $this->site_id
                     ),
                 'sort' => 'counter DESC',
-                'limit' => array($limit)
+                'limits' => array($limit)
                 );
             $dataPost = $this->getList($query);
         }

@@ -17,7 +17,7 @@ class Cms extends CI_Controller {
     * BASE CMS view template
     */
     public function view($view_file, $data = array(), $title = null) {
-        $title = ($title == null) ? 'Welcome | ' . $this->cms_var->web_name : $title;
+        $title = ($title == null) ? $this->cms_var->web_name . ' | ' . $this->cms_var->web_title : $title;
         $jumbotron = ($this->cms_var->is_jumbotron == 1) ? $this->cmsmodel->getJumbotronPost() : null;
         $featured = ($this->cms_var->is_featured == 1) ? $this->cmsmodel->getFeaturedPost() : null;
         $popular = ($this->cms_var->is_popular == 1) ? $this->cmsmodel->getPopularPost() : null;
