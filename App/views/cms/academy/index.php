@@ -137,7 +137,7 @@ if ($template == true && $template->is_testimonial == 1) {
                 <div class="col-12">
                     <div class="section-heading text-center mx-auto white wow fadeInUp" data-wow-delay="300ms">
                         <span>our testimonials</span>
-                        <h3>See what our satisfied customers are saying about us</h3>
+                        <!-- <h3>See what our satisfied customers are saying about us</h3> -->
                     </div>
                 </div>
             </div>
